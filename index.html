@@ -4,12 +4,92 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Антонина Зубова</title>
+    <title>KUGOO</title>
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/style.css" />
-    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Jost:wght@400;500;600;700&family=Noto+Sans:ital,wght@0,600;0,700;1,400&family=PT+Sans&family=Pacifico&family=Roboto&family=Tenor+Sans&display=swap" rel="stylesheet">
   </head>
   <body>
+    <nav class="navbar container">
+     <div class="navbar-left">
+      <ul class="header-nav">
+        <li class="header-nav-item">
+          <a href="#" class="header-nav-link">Сервис</a>
+        </li>
+        <li class="header-nav-item">
+          <a href="#" class="header-nav-link">Сотрудничество</a>
+        </li>
+        <li class="header-nav-item">
+          <a href="#" class="header-nav-link">Заказать звонок</a>
+        </li>
+      </ul>
+      <ul class="header-social">
+        <li class="header-social-item">
+          <a href="" class="social-link"> 
+            <svg class="viber-icon">
+                <use href="img/sprite.svg#viber"></use>
+            </svg>
+          </a>
+        </li>
+        <li class="header-social-item">
+          <a href="" class="social-link">
+            <svg class="viber-icon">
+              <use href="img/sprite.svg#whatsapp"></use>
+            </svg>
+          </a>
+        </li>
+        <li class="header-social-item">
+          <a href="" class="social-link">
+            <svg class="viber-icon">
+              <use href="img/sprite.svg#telegram"></use>
+            </svg>
+          </a>
+        </li>
+      </ul>
+     </div>
+      <a href="tel:+78005055461" class="header-phone-link">+7 (800) 505-54-61</a>
+    </nav>
+    <!-- /.navbar -->
+    <div class="header-line"></div>
+    <div class="navbar-bottom container">
+      <a href="#" class="logo-link"><svg class="header-logo">
+        <use href="img/sprite.svg#logo"></use>
+      </svg></a>
+      <button class="button button-header">
+        <a href="" class="header-menu-toggle">
+          <div class="header-menu-line"></div>
+          <div class="header-menu-line"></div>
+          <div class="header-menu-line"></div>
+        </a>
+        <p class="button-text">Каталог</p>
+      </button>
+   <form action="#" class="search">
+    <input id="search" type="text" class="header-input" placeholder="">
+    <label class="input-group-label" for="search">Искать самокат KUGO</label>
+    <button type="submit" class="glass-link">
+      <svg class="glass-icon">
+        <use href="img/sprite.svg#glass"></use>
+      </svg>
+    </button>
+   </form>
+    
+    <ul class="purchase">
+      <li class="purchase-item"> <svg class="purchase-icon">
+        <use href="img/sprite.svg#scales"></use>
+      </svg></li>
+      <li class="purchase-item"><svg class="purchase-icon">
+        <use href="img/sprite.svg#heard"></use>
+      </svg></li>
+      <li class="purchase-item"><a href="" class="cart-link"><svg class="purchase-icon">
+        <use href="img/sprite.svg#cart"></use>
+      </svg><span class='link-text'>Корзина</span></a></li>
+    </ul>
+  </div>
+    <!-- /.input-group-header -->
+   
+    <!-- /.navbar-bottom -->
     <script src="js/main.js"></script>
   </body>
 </html>
