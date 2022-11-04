@@ -33,7 +33,12 @@ modalButtons.forEach((button) => {
     //определяем текущее открытое окно
     currentModal = document.querySelector(button.dataset.target);
     currentModal.classList.toggle("is-open");
-
+    modalDialog=currentModal.querySelector('.modal-dialog');
+    currentModal.addEventListener("click", (event) => {
+      if (!event.composedPath().includes(modalDialog)) {
+        currentModal.classList.remove("is-open");
+      }
+    });
     console.log(button.dataset.target);
     console.log(currentModal);
   });
@@ -52,17 +57,17 @@ forms.forEach((form) => {
   });
   // console.log(forms);
   validation
-    .addField("[name=username]", [
-      {
-        rule: "required",
-        errorMessage: "Укажите имя",
-      },
-      {
-        rule: "maxLength",
-        value: 50,
-        errorMessage: "Максимально 50 символов",
-      },
-    ])
+    // .addField("[name=username]", [
+    //   {
+    //     rule: "required",
+    //     errorMessage: "Укажите имя",
+    //   },
+    //   {
+    //     rule: "maxLength",
+    //     value: 50,
+    //     errorMessage: "Максимально 50 символов",
+    //   },
+    // ])
     .addField("[name=userphone]", [
       {
         rule: "required",
