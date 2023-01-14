@@ -34,9 +34,12 @@ modalButtons.forEach((button) => {
     currentModal = document.querySelector(button.dataset.target);
     currentModal.classList.toggle("is-open");
     modalDialog=currentModal.querySelector('.modal-dialog');
+    document.body.style.overflow = "hidden"; //запрет прокрутки сайта под меню
     currentModal.addEventListener("click", (event) => {
+      document.body.style.overflow = ""; //возвращает прокрутку
       if (!event.composedPath().includes(modalDialog)) {
         currentModal.classList.remove("is-open");
+       
       }
     });
     console.log(button.dataset.target);
@@ -49,35 +52,81 @@ document.addEventListener("keyup", (event) => {
   }
 });
 
+// const emails = document.querySelectorAll('.modal-email');
+// emails.forEach(() => {
+//   const validation2 = new JustValidate('.modal-email', {
+//     errorFieldCssClass: "is-invalid",
+//     errorLabelStyle: {
+//       color: 'red',
+//       textDecoration: 'underlined',
+//       top: '-15px',
+//       left: '10px',
+//       position: 'absolute',
+//       background: '#FFFFFF',
+//       padding: '5px',
+//     },
+//   })
+//   validation2
+//     .addField("[name='useremail']", [
+//       {
+//         rule: "required",
+//         errorMessage: "Укажите телефон",
+//       },
+//       {
+//         rule: "required",
+//         errorMessage: "Phone is invalid!",
+//       },
+//     ])
+//  errorLabelStyle: {
+//       color: 'red',
+//       textDecoration: 'underlined',
+//       top: '-15px',
+//       left: '10px',
+//       position: 'absolute',
+//       background: '#FFFFFF',
+//       padding: '5px',
+      
+//     },
+    
 const forms = document.querySelectorAll("form");
-
 forms.forEach((form) => {
   const validation = new JustValidate(form, {
     errorFieldCssClass: "is-invalid",
-  });
+    errorLabelStyle: {
+      color: 'red',
+      textDecoration: 'underlined',
+      top: '-15px',
+      left: '10px',
+      position: 'absolute',
+      background: '#FFFFFF',
+      padding: '5px',
+      fontSsize:'10px',
+    },
+    errorsContainer: '.errors-container',
+  },
+ 
+  );
   // console.log(forms);
   validation
-    // .addField("[name=username]", [
-    //   {
-    //     rule: "required",
-    //     errorMessage: "Укажите имя",
-    //   },
-    //   {
-    //     rule: "maxLength",
-    //     value: 50,
-    //     errorMessage: "Максимально 50 символов",
-    //   },
-    // ])
-    .addField("[name=userphone]", [
+    .addField("[name='userphone']", [
       {
         rule: "required",
         errorMessage: "Укажите телефон",
       },
+      // {
+      //   rule: "required",
+      //   errorMessage: "Phone is invalid!",
+      // },
+     
       {
-        rule: "required",
-        errorMessage: "Phone is invalid!",
+        rule: 'minLength',
+        value: 13,
+        errorMessage: "Недостаточно знаков",
       },
+     
     ])
+   
+  
     .onSuccess((event) => {
       const thisForm = event.target; //наша форма
       const formData = new FormData(thisForm); //данные из нашей формы
@@ -97,15 +146,20 @@ forms.forEach((form) => {
                 currentModal.classList.remove("is-open");
               }
             });
-            // alert('форма отправлена');
-          } else {
-            alert(response.statusText);
-          }
+              // alert('форма отправлена');
+            } 
+          //   else {
+          //     alert(response.statusText);
+          // }
         });
+        
       };
       ajaxSend(formData);
+      console.log(formData);
     });
+    
 });
+
 
 /* Создаем префикс +7, даже если вводят 8 или 9 */
 const prefixNumber = (str) => {
