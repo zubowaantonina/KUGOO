@@ -42,8 +42,8 @@ modalButtons.forEach((button) => {
        
       }
     });
-    console.log(button.dataset.target);
-    console.log(currentModal);
+    // console.log(button.dataset.target);
+    // console.log(currentModal);
   });
 });
 document.addEventListener("keyup", (event) => {
@@ -52,31 +52,74 @@ document.addEventListener("keyup", (event) => {
   }
 });
 
-// const emails = document.querySelectorAll('.modal-email');
-// emails.forEach(() => {
-//   const validation2 = new JustValidate('.modal-email', {
-//     errorFieldCssClass: "is-invalid",
-//     errorLabelStyle: {
-//       color: 'red',
-//       textDecoration: 'underlined',
-//       top: '-15px',
-//       left: '10px',
-//       position: 'absolute',
-//       background: '#FFFFFF',
-//       padding: '5px',
-//     },
-//   })
-//   validation2
-//     .addField("[name='useremail']", [
-//       {
-//         rule: "required",
-//         errorMessage: "Укажите телефон",
-//       },
-//       {
-//         rule: "required",
-//         errorMessage: "Phone is invalid!",
-//       },
-//     ])
+
+
+
+
+const emails = document.querySelectorAll('.subscription-input');
+
+console.dir(emails);
+emails.forEach(() => {
+  const validation2 = new JustValidate("#eMail", {
+    errorFieldCssClass: "is-invalid",
+    errorLabelStyle: {
+      color: 'red',
+      textDecoration: 'underlined',
+      top: '-15px',
+      left: '10px',
+      position: 'absolute',
+      background: '#FFFFFF',
+      padding: '5px',
+    },
+    errorsContainer: '.errors-container',
+  })
+  validation2
+  .addField("[name='useremail']", [
+    {
+      rule: 'required',
+      errorMessage: "Укажите почту",
+    },
+    {
+      rule: 'email',
+    },
+    
+  ]
+  )
+
+  .onSuccess((event) => {
+    const thisInput = event.target; //наша форма
+    const formData = new FormData(thisInput); //данные из нашей формы
+    const ajaxSend = (formData) => {
+      fetch(thisForm.getAttribute("action"), {
+        method: thisForm.getAttribute("method"),
+        body: formData,
+      }).then((response) => {
+        if (response.ok) {
+          thisForm.reset();
+          currentModal.classList.remove("is-open");
+          alertModal.classList.add("is-open");
+          currentModal = alertModal;
+          modalDialog = document.querySelector(".modal-dialog");
+          currentModal.addEventListener("click", (event) => {
+            if (!event.composedPath().includes(modalDialog)) {
+              currentModal.classList.remove("is-open");
+            }
+          });
+            // alert('форма отправлена');
+          } 
+        //   else {
+          // 64112
+        //     alert(response.statusText);
+        // }
+      });
+    };
+    ajaxSend(formData);
+    console.log(formData);
+  });
+  
+});
+ 
+    // console.log( validation2);
 //  errorLabelStyle: {
 //       color: 'red',
 //       textDecoration: 'underlined',
@@ -86,8 +129,8 @@ document.addEventListener("keyup", (event) => {
 //       background: '#FFFFFF',
 //       padding: '5px',
       
-//     },
-    
+     
+
 const forms = document.querySelectorAll("form");
 forms.forEach((form) => {
   const validation = new JustValidate(form, {
@@ -103,27 +146,18 @@ forms.forEach((form) => {
       fontSsize:'10px',
     },
     errorsContainer: '.errors-container',
-  },
- 
-  );
-  // console.log(forms);
+  });
   validation
     .addField("[name='userphone']", [
       {
         rule: "required",
         errorMessage: "Укажите телефон",
       },
-      // {
-      //   rule: "required",
-      //   errorMessage: "Phone is invalid!",
-      // },
-     
       {
         rule: 'minLength',
         value: 13,
         errorMessage: "Недостаточно знаков",
       },
-     
     ])
    
   
@@ -149,10 +183,10 @@ forms.forEach((form) => {
               // alert('форма отправлена');
             } 
           //   else {
+            // 64112
           //     alert(response.statusText);
           // }
         });
-        
       };
       ajaxSend(formData);
       console.log(formData);
