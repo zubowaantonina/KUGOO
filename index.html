@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>KUGOO</title>
   <link rel="stylesheet" href="css/normalize.css">
-  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/style.css?v=1.0" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="apple-touch-icon" sizes="57x57" href="./img/favicon.ico/apple-icon-57x57.png">
@@ -501,7 +501,7 @@
                 placeholder="+7 (___) __ - __ - __" />
               <!-- <label class='input-group-label modal-group-label' for="modal-user-phon">+7 (___) __ - __ - __</label> -->
             </div>
-            <button type="submit" class="button testing-form-button" >Оставить заявку на тест-драйв</button>
+            <button type="submit" class="button testing-form-button">Оставить заявку на тест-драйв</button>
           </div>
           <!-- /.input-group-wrapper -->
           <div class="testing-notify">
@@ -521,7 +521,7 @@
         </picture>
       </div>
     </div>
-     <!-- /.testing-wrapper -->
+    <!-- /.testing-wrapper -->
   </section>
 
   <!-- /.testing container -->
@@ -540,17 +540,18 @@
       </div>
        
     </form> -->
-    <div class="subscribe " >
+    <div class="subscribe">
       <div class="subscription-title">оставьте свою почту и станьте первым, кто получит скидку на новые самокаты</div>
-      <div class="form-content">
+      <form class="form-content" id="eMail" action="handler.php" method='POST'>
         <div class="input-group-wrapper input-group-vertical">
-          <div class="input-group modal-input-group subscription-input" id="eMail" action="telegram.php" method='POST'>
-            <input id='user-email' type="email" class="input" placeholder="Введите Ваш email" name='useremail' required/>
+          <div class="input-group modal-input-group subscription-input">
+            <input id='user-email' type="email" class="input" placeholder="Введите Ваш email" name='useremail'
+              required />
           </div>
         </div>
 
         <button type="submit" class="button subscription-form-button">Подписаться</button>
-      </div>
+      </form>
     </div>
 
   </section>
@@ -717,64 +718,64 @@
         <li class="requisites-item"><a href="#" class="requisites-link">Реквизиты</a></li>
         <li class="requisites-item"><a href="#" class="requisites-link">Политика конфиденциальности</a></li>
       </ul>
-     <div class="footer-wrapper-social">
-      <ul class="payments">
-        <li class="payments-item">
-          <a href="#" class="payments-link"><img src="img/icon/GooglePay.svg" class="payments-icon" alt="doodlepay">
-          </a>
-        </li>
-        <li class="payments-item">
-          <a href="#" class="payments-link"><img src="img/icon/ApplePay.svg" class="payments-icon" alt="applepay">
-          </a>
-        </li>
-        <li class="payments-item">
-          <a href="#" class="payments-link"><img src="img/icon/visa-logo.svg" class="payments-icon" alt="visa">
-          </a>
-        </li>
-        <li class="payments-item">
-          <a href="#" class="payments-link"><img src="img/icon/Mastercard.svg" class="payments-icon" alt="mastercard">
-          </a>
-        </li>
-        <li class="payments-item">
-          <a href="#" class="payments-link"><img src="img/icon/Maestro.svg" class="payments-icon" alt="maestro">
-          </a>
-        </li>
-        <li class="payments-item">
-          <a href="#" class="payments-link"><img src="img/icon/Webmoney.svg" class="payments-icon" alt="webmoney">
-          </a>
-        </li>
-        <li class="payments-item">
-          <a href="#" class="payments-link"><img src="img/icon/Qiwi.svg" class="payments-icon" alt="qiwi">
-          </a>
-        </li>
-      </ul>
-      <div class="social-bottom">
-        <p class="social-bottom-text">Online чат:</p>
-        <ul class="footer-social">
-          <li class="footer-social-item">
-            <a href="" class="footer-social-link">
-              <svg class="footer-viber-icon">
-                <use href="img/sprite.svg#viber"></use>
-              </svg>
+      <div class="footer-wrapper-social">
+        <ul class="payments">
+          <li class="payments-item">
+            <a href="#" class="payments-link"><img src="img/icon/GooglePay.svg" class="payments-icon" alt="doodlepay">
             </a>
           </li>
-          <li class="footer-social-item">
-            <a href="" class="footer-social-link">
-              <svg class="footer-viber-icon">
-                <use href="img/sprite.svg#whatsapp"></use>
-              </svg>
+          <li class="payments-item">
+            <a href="#" class="payments-link"><img src="img/icon/ApplePay.svg" class="payments-icon" alt="applepay">
             </a>
           </li>
-          <li class="footer-social-item">
-            <a href="" class="footer-social-link">
-              <svg class="footer-viber-icon">
-                <use href="img/sprite.svg#telegram"></use>
-              </svg>
+          <li class="payments-item">
+            <a href="#" class="payments-link"><img src="img/icon/visa-logo.svg" class="payments-icon" alt="visa">
+            </a>
+          </li>
+          <li class="payments-item">
+            <a href="#" class="payments-link"><img src="img/icon/Mastercard.svg" class="payments-icon" alt="mastercard">
+            </a>
+          </li>
+          <li class="payments-item">
+            <a href="#" class="payments-link"><img src="img/icon/Maestro.svg" class="payments-icon" alt="maestro">
+            </a>
+          </li>
+          <li class="payments-item">
+            <a href="#" class="payments-link"><img src="img/icon/Webmoney.svg" class="payments-icon" alt="webmoney">
+            </a>
+          </li>
+          <li class="payments-item">
+            <a href="#" class="payments-link"><img src="img/icon/Qiwi.svg" class="payments-icon" alt="qiwi">
             </a>
           </li>
         </ul>
+        <div class="social-bottom">
+          <p class="social-bottom-text">Online чат:</p>
+          <ul class="footer-social">
+            <li class="footer-social-item">
+              <a href="" class="footer-social-link">
+                <svg class="footer-viber-icon">
+                  <use href="img/sprite.svg#viber"></use>
+                </svg>
+              </a>
+            </li>
+            <li class="footer-social-item">
+              <a href="" class="footer-social-link">
+                <svg class="footer-viber-icon">
+                  <use href="img/sprite.svg#whatsapp"></use>
+                </svg>
+              </a>
+            </li>
+            <li class="footer-social-item">
+              <a href="" class="footer-social-link">
+                <svg class="footer-viber-icon">
+                  <use href="img/sprite.svg#telegram"></use>
+                </svg>
+              </a>
+            </li>
+          </ul>
+        </div>
       </div>
-     </div>
     </div>
 
   </section>
@@ -816,7 +817,7 @@
 
       </div>
       <div class="modal-item">
-       
+
         <picture class="img-modal">
           <!-- <source type="image/webp" srcset="./img/modal.webp" class="img-modal">
           <source type="image/jpeg" srcset="./img/modal.jpg" class="img-modal"> -->
@@ -849,13 +850,22 @@
         следующий день со звонка Вам.
       </p>
 
-      <!-- /.input-group-wrapper -->
-      <!-- <div class="sending-form-footer">
-        <button class="button sending-form-button">Вернуться на главную</button> 
-      </div> -->
     </div>
   </div>
-  <!-- /окно благодарности -->
+  <!-- /окно подписки -->
+  <div class="modal" id="subscription-modal">
+    <div class="subscription-dialog">
+    
+        <a href="#" class="modal-close subscription-close" data-toggle='modal' data-target="#subscription-modal">
+          <svg class="close-icon-sending" width="18">
+            <use href="img/sprite.svg#close"></use>
+          </svg>
+        </a>
+        <h2 class="">Вы подписаны!</h2>
+      
+    </div>
+  </div>
+  <!-- /окно подписки -->
   <script src='js/just-validate.production.min.js'></script>
   <script src="js/main.js"></script>
 </body>

@@ -24,7 +24,7 @@ let modalDialog; //белое диалоговое окно
 const alertModal = document.querySelector("#alert-modal"); //окно с благодарностью
 // const modalButton=document.querySelector(".modal-form-button");
 // const sending=document.querySelector(".sending");
-
+const subscriptionModal=document.querySelector("#subscription-modal")
 const modalButtons = document.querySelectorAll("[data-toggle=modal]"); //переключатели модальных окон
 
 modalButtons.forEach((button) => {
@@ -56,24 +56,25 @@ document.addEventListener("keyup", (event) => {
 
 
 
-const emails = document.querySelectorAll('.subscription-input');
+const emails = document.querySelectorAll('.form-content');
 
-console.dir(emails);
+// console.log(emails);
 emails.forEach(() => {
-  const validation2 = new JustValidate("#eMail", {
+  const validation = new JustValidate("#eMail", {
     errorFieldCssClass: "is-invalid",
     errorLabelStyle: {
       color: 'red',
       textDecoration: 'underlined',
-      top: '-15px',
+      top: '-13px',
       left: '10px',
       position: 'absolute',
-      background: '#FFFFFF',
+      background: '#6f73ee;',
       padding: '5px',
     },
     errorsContainer: '.errors-container',
+    
   })
-  validation2
+  validation
   .addField("[name='useremail']", [
     {
       rule: 'required',
@@ -81,42 +82,47 @@ emails.forEach(() => {
     },
     {
       rule: 'email',
+      errorMessage: "Неправильный формат почты",
     },
     
-  ]
-  )
+  ])
+  
 
   .onSuccess((event) => {
-    const thisInput = event.target; //наша форма
-    const formData = new FormData(thisInput); //данные из нашей формы
+    const thisForm = event.target; //наша форма
+    const formData = new FormData(thisForm); //данные из нашей формы
+    console.log(formData);
     const ajaxSend = (formData) => {
+      console.log(formData);
       fetch(thisForm.getAttribute("action"), {
         method: thisForm.getAttribute("method"),
         body: formData,
       }).then((response) => {
         if (response.ok) {
           thisForm.reset();
-          currentModal.classList.remove("is-open");
-          alertModal.classList.add("is-open");
-          currentModal = alertModal;
+          // currentModal.classList.remove("is-open");
+          subscriptionModal.classList.add("is-open");
+          currentModal = subscriptionModal;
           modalDialog = document.querySelector(".modal-dialog");
           currentModal.addEventListener("click", (event) => {
             if (!event.composedPath().includes(modalDialog)) {
               currentModal.classList.remove("is-open");
             }
           });
-            // alert('форма отправлена');
-          } 
-        //   else {
+          //   alert('форма отправлена');
+          // } 
+          // else {
           // 64112
-        //     alert(response.statusText);
-        // }
+            // alert(response.statusText);
+        }
       });
     };
     ajaxSend(formData);
     console.log(formData);
   });
-  
+ 
+
+
 });
  
     // console.log( validation2);
@@ -131,7 +137,7 @@ emails.forEach(() => {
       
      
 
-const forms = document.querySelectorAll("form");
+const forms = document.querySelectorAll(".modal-form");
 forms.forEach((form) => {
   const validation = new JustValidate(form, {
     errorFieldCssClass: "is-invalid",
@@ -160,7 +166,26 @@ forms.forEach((form) => {
       },
     ])
    
-  
+    // .addField("[name='useremail']", [
+    //   {
+    //     rule: 'required',
+    //   },
+    //   {
+    //     rule: 'email',
+    //   },
+     
+    // ])  
+    // .removeField("[name='useremail']",[
+    //   {
+    //     field: 'email',
+    //   }
+    // ])
+    // validation .removeField( "[name='useremail']",[
+    //   field:
+    // ])
+
+
+
     .onSuccess((event) => {
       const thisForm = event.target; //наша форма
       const formData = new FormData(thisForm); //данные из нашей формы
