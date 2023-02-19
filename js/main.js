@@ -125,18 +125,6 @@ emails.forEach(() => {
 
 });
  
-    // console.log( validation2);
-//  errorLabelStyle: {
-//       color: 'red',
-//       textDecoration: 'underlined',
-//       top: '-15px',
-//       left: '10px',
-//       position: 'absolute',
-//       background: '#FFFFFF',
-//       padding: '5px',
-      
-     
-
 const forms = document.querySelectorAll(".modal-form");
 forms.forEach((form) => {
   const validation = new JustValidate(form, {
@@ -166,26 +154,6 @@ forms.forEach((form) => {
       },
     ])
    
-    // .addField("[name='useremail']", [
-    //   {
-    //     rule: 'required',
-    //   },
-    //   {
-    //     rule: 'email',
-    //   },
-     
-    // ])  
-    // .removeField("[name='useremail']",[
-    //   {
-    //     field: 'email',
-    //   }
-    // ])
-    // validation .removeField( "[name='useremail']",[
-    //   field:
-    // ])
-
-
-
     .onSuccess((event) => {
       const thisForm = event.target; //наша форма
       const formData = new FormData(thisForm); //данные из нашей формы
