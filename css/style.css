@@ -645,6 +645,7 @@ margin-right: 135px; */
   display: inline-block;
   /* justify-content: flex-end; */
   object-fit: cover;
+  /* vertical-align: bottom; */
 
 }
 

@@ -24,7 +24,7 @@ let modalDialog; //белое диалоговое окно
 const alertModal = document.querySelector("#alert-modal"); //окно с благодарностью
 // const modalButton=document.querySelector(".modal-form-button");
 // const sending=document.querySelector(".sending");
-const subscriptionModal=document.querySelector("#subscription-modal")
+const subscriptionModal = document.querySelector("#subscription-modal")
 const modalButtons = document.querySelectorAll("[data-toggle=modal]"); //переключатели модальных окон
 
 modalButtons.forEach((button) => {
@@ -33,13 +33,13 @@ modalButtons.forEach((button) => {
     //определяем текущее открытое окно
     currentModal = document.querySelector(button.dataset.target);
     currentModal.classList.toggle("is-open");
-    modalDialog=currentModal.querySelector('.modal-dialog');
+    modalDialog = currentModal.querySelector('.modal-dialog');
     document.body.style.overflow = "hidden"; //запрет прокрутки сайта под меню
     currentModal.addEventListener("click", (event) => {
       document.body.style.overflow = ""; //возвращает прокрутку
       if (!event.composedPath().includes(modalDialog)) {
         currentModal.classList.remove("is-open");
-       
+
       }
     });
     // console.log(button.dataset.target);
@@ -72,59 +72,92 @@ emails.forEach(() => {
       padding: '5px',
     },
     errorsContainer: '.errors-container',
-    
+
   })
   validation
-  .addField("[name='useremail']", [
-    {
-      rule: 'required',
-      errorMessage: "Укажите почту",
-    },
-    {
-      rule: 'email',
-      errorMessage: "Неправильный формат почты",
-    },
-    
-  ])
-  
+    .addField("[name='useremail']", [
+      {
+        rule: 'required',
+        errorMessage: "Укажите почту",
+      },
+      {
+        rule: 'email',
+        errorMessage: "Неправильный формат почты",
+      },
 
-  .onSuccess((event) => {
-    const thisForm = event.target; //наша форма
-    const formData = new FormData(thisForm); //данные из нашей формы
-    console.log(formData);
-    const ajaxSend = (formData) => {
+    ])
+
+
+    .onSuccess((event) => {
+      const thisForm = event.target; //наша форма
+      const formData = new FormData(thisForm); //данные из нашей формы
       console.log(formData);
-      fetch(thisForm.getAttribute("action"), {
-        method: thisForm.getAttribute("method"),
-        body: formData,
-      }).then((response) => {
+      const ajaxSend = async (formData) => {
+        /*создаем функцию отправки формы*/
+        const fetchResp = await fetch('telegram.php', {
+            /*указываем обработчик формы-telegram.php*/
+            method: 'POST', /*метод,которым отправляем форму*/
+            body: formData ,/*что будет внутри формы - содержимое input*/
+        }).then((response) => {
         if (response.ok) {
-          thisForm.reset();
-          // currentModal.classList.remove("is-open");
-          subscriptionModal.classList.add("is-open");
-          currentModal = subscriptionModal;
-          modalDialog = document.querySelector(".modal-dialog");
-          currentModal.addEventListener("click", (event) => {
-            if (!event.composedPath().includes(modalDialog)) {
-              currentModal.classList.remove("is-open");
-            }
-          });
-          //   alert('форма отправлена');
-          // } 
-          // else {
-          // 64112
-            // alert(response.statusText);
-        }
-      });
+                thisForm.reset();
+               
+                subscriptionModal.classList.add("is-open");
+                currentModal = subscriptionModal;
+                modalDialog = document.querySelector(".modal-dialog");
+                currentModal.addEventListener("click", (event) => {
+                  if (!event.composedPath().includes(modalDialog)) {
+                    currentModal.classList.remove("is-open");
+                  }
+                });
+                 
+                } 
+                 else {
+            // 64112
+            alert(response.statusText);
+          }
+        // return await fetchResp.text();
+        /*если все хорошо,возвращаем ответ сервера*/
+        });
     };
-    ajaxSend(formData);
-    console.log(formData);
-  });
- 
+
+
+
+
+      
+      // const ajaxSend = (formData) => {
+      //   console.log(formData);
+      //   fetch(thisForm.getAttribute("action"), {
+      //     method: thisForm.getAttribute("method"),
+      //     body: formData,
+      //   }).then((response) => {
+      //     if (response.ok) {
+      //       thisForm.reset();
+           
+      //       subscriptionModal.classList.add("is-open");
+      //       currentModal = subscriptionModal;
+      //       modalDialog = document.querySelector(".modal-dialog");
+      //       currentModal.addEventListener("click", (event) => {
+      //         if (!event.composedPath().includes(modalDialog)) {
+      //           currentModal.classList.remove("is-open");
+      //         }
+      //       });
+            //   alert('форма отправлена');
+            // } 
+            // else {
+            // 64112
+            // alert(response.statusText);
+      //     }
+      //   });
+      // };
+      ajaxSend(formData);
+      console.log(formData);
+    });
+
 
 
 });
- 
+
 const forms = document.querySelectorAll(".modal-form");
 forms.forEach((form) => {
   const validation = new JustValidate(form, {
@@ -137,7 +170,7 @@ forms.forEach((form) => {
       position: 'absolute',
       background: '#FFFFFF',
       padding: '5px',
-      fontSsize:'10px',
+      fontSsize: '10px',
     },
     errorsContainer: '.errors-container',
   });
@@ -153,7 +186,7 @@ forms.forEach((form) => {
         errorMessage: "Недостаточно знаков",
       },
     ])
-   
+
     .onSuccess((event) => {
       const thisForm = event.target; //наша форма
       const formData = new FormData(thisForm); //данные из нашей формы
@@ -173,10 +206,10 @@ forms.forEach((form) => {
                 currentModal.classList.remove("is-open");
               }
             });
-              // alert('форма отправлена');
-            } 
+            // alert('форма отправлена');
+          }
           //   else {
-            // 64112
+          // 64112
           //     alert(response.statusText);
           // }
         });
@@ -184,7 +217,7 @@ forms.forEach((form) => {
       ajaxSend(formData);
       console.log(formData);
     });
-    
+
 });
 
 
